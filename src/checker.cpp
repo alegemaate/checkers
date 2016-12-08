@@ -46,7 +46,7 @@ bool checker::is_at( int x, int y){
 
 // Move
 void checker::jump( bool left, bool super){
-  y += height * ((color * 2) - 1);
+  y += height * ((color * 2) - 1) * (super + 1);
   if( !left)
     x += width * (super + 1);
   else

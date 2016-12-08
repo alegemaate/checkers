@@ -77,10 +77,12 @@ void board::select_tile( int x, int y){
 
     // Jump pieces
     bool superJump = false;
-    int checker_index = checker_at( selection_x * (height/TILES_HIGH), selection_y * (width/TILES_WIDE));
-    int checker_index2 = checker_at( (selection_x - 1) * (height/TILES_HIGH), selection_y * (width/TILES_WIDE));
-    if( checker_index != -1)
-      checkers.at(checker_index).jump( true, superJump);
+    int selection_index = checker_at( selection_x * (height/TILES_HIGH), selection_y * (width/TILES_WIDE));
+    if( selection_index != -1){
+      int checker_index2 = checker_at( (selection_x - 1) * (width/TILES_WIDE), (selection_y + ((checkers.at(checker_index).color * 2) - 1)) * (height/TILES_HIGH));
+      superJump = (checker_index2 != -1);
+      checkers.at(selection_index).jump( true, superJump);
+    }
   }
 }
 

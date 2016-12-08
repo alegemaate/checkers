@@ -8,13 +8,13 @@
 	<vector>
 	"checker.h"
 
-1481160605 source:c:\users\allan\documents\games indev\checkers\src\board.cpp
+1481161815 source:c:\users\allan\documents\games indev\checkers\src\board.cpp
 	"board.h"
 
-1481160976 c:\users\allan\documents\games indev\checkers\include\checker.h
+1481161465 c:\users\allan\documents\games indev\checkers\include\checker.h
 	<allegro.h>
 
-1481160719 source:c:\users\allan\documents\games indev\checkers\src\checker.cpp
+1481161957 source:c:\users\allan\documents\games indev\checkers\src\checker.cpp
 	"checker.h"
 
 1481159407 c:\users\allan\documents\games indev\checkers\include\game.h
