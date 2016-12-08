@@ -28,10 +28,14 @@
 		<Unit filename="include/board.h" />
 		<Unit filename="include/checker.h" />
 		<Unit filename="include/game.h" />
+		<Unit filename="include/globals.h" />
+		<Unit filename="include/position.h" />
 		<Unit filename="main.cpp" />
 		<Unit filename="src/board.cpp" />
 		<Unit filename="src/checker.cpp" />
 		<Unit filename="src/game.cpp" />
+		<Unit filename="src/globals.cpp" />
+		<Unit filename="src/position.cpp" />
 		<Extensions>
 			<code_completion />
 			<envvars />

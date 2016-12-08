@@ -9,6 +9,8 @@ checker::checker(){
   this -> height = 1;
   this -> color = COLOR_RED;
   this -> image = NULL;
+  this -> image_king = NULL;
+  this -> king = false;
 }
 
 // Constructor with vars
@@ -20,9 +22,12 @@ checker::checker( int x, int y, int width, int height, int color){
   this -> height = height;
   this -> color = color;
   this -> image = NULL;
+  this -> image_king = NULL;
+  this -> king = false;
 
   // Make checker
   this -> image = generate_image( this -> width, this -> height, this -> color);
+  this -> image_king = generate_image( this -> width, this -> height, this -> color, true);
 }
 
 // Deconstructor
@@ -33,7 +38,9 @@ checker::~checker(){
 // Draw
 void checker::draw( BITMAP *tempBuffer){
   // IF it exists
-  if( image != NULL)
+  if( king && image_king != NULL)
+    draw_sprite( tempBuffer, image_king, x * width, y * height);
+  else if( image != NULL)
     draw_sprite( tempBuffer, image, x * width, y * height);
 }
 
@@ -45,16 +52,16 @@ bool checker::is_at( int x, int y){
 }
 
 // Move
-void checker::jump( bool left, bool super){
-  y += height * ((color * 2) - 1) * (super + 1);
+void checker::jump( bool left, bool super, bool backwards){
+  y += ((color * 2) - 1) * -((backwards * 2) - 1) * (super + 1);
   if( !left)
-    x += width * (super + 1);
+    x += super + 1;
   else
-    x -= width * (super + 1);
+    x -= super + 1;
 }
 
 // Generate a image
-BITMAP *checker::generate_image( int width, int height, int color){
+BITMAP *checker::generate_image( int width, int height, int color, bool king){
   // Make it
   BITMAP *tempImage = create_bitmap( width, height);
 
@@ -64,6 +71,11 @@ BITMAP *checker::generate_image( int width, int height, int color){
   // Circle
   ellipsefill( tempImage, width/2, height/2, width/2 - 6, height/2 - 6, makecol( (230 * ((color + 1) % 1)), 0, 0));
   ellipsefill( tempImage, width/2, height/2, width/2 - 8, height/2 - 8, makecol( (230 * color), 20, 20));
+
+  // King
+  if( king){
+    ellipsefill( tempImage, width/2, height/2, width/2 - width/3, height/2 - height/3, makecol( 128, 128, 20));
+  }
 
   // Return that image
   return tempImage;

@@ -13,6 +13,9 @@
 // Position
 #include "position.h"
 
+// Globals
+#include "globals.h"
+
 // Tiles wide and high
 #define TILES_WIDE 8
 #define TILES_HIGH 8
@@ -35,7 +38,7 @@ class board{
     void add_checker( checker newChecker);
 
     // Calculate moves
-    void calculate_moves( position selectedTile, int color, bool first = true);
+    void calculate_moves( position selectedTile, int color, bool king, bool first);
 
     // Check if checker is at position
     void select_tile( position newPosition);
@@ -60,6 +63,11 @@ class board{
     // Selected coordinates
     int selection_x;
     int selection_y;
+
+    // Multi move
+    bool multimove;
+
+    position checker_jumped;
 
     // Stores available moves
     std::vector<position> moves;

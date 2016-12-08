@@ -4,7 +4,7 @@
 // Stores 2 dimensional coordinates
 class position{
   public:
-    position(int x, int y);
+    position(int x = -1, int y = -1);
     virtual ~position();
 
     int x;

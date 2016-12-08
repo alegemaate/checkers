@@ -1,4 +1,5 @@
 #include "game.h"
+#include "globals.h"
 
 // Init game state
 game::game(){
@@ -22,9 +23,6 @@ game::game(){
       main_board.add_checker( newChecker);
     }
   }
-
-  // Player 1's turn
-  turn = 0;
 }
 
 // Destroy game state
@@ -57,7 +55,7 @@ void game::draw(){
   circlefill( buffer, mouse_x, mouse_y, 3, 0xFFFFFF);
 
   // Debug
-  textprintf_ex( buffer, font, 500, 40, 0xFFFFFF, -1, "Turn:%i", turn);
+  textprintf_ex( buffer, font, 500, 40, 0xFFFFFF, -1, "Turn:%i", globals::turn);
 
   // Draw buffer to screen
   draw_sprite( screen, buffer, 0, 0);

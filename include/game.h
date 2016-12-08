@@ -10,6 +10,9 @@
 // Checkers
 #include "checker.h"
 
+// Global vars
+#include "globals.h"
+
 // Main game
 class game{
   public:
@@ -29,9 +32,6 @@ class game{
 
     // Main board
     board main_board;
-
-    // Turn
-    bool turn;
 };
 
 #endif // GAME_H

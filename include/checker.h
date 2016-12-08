@@ -25,7 +25,7 @@ class checker{
     bool is_at( int x, int y);
 
     // Move
-    void jump( bool left, bool super);
+    void jump( bool left, bool super, bool backwards);
 
     // Type
     int type;
@@ -34,11 +34,18 @@ class checker{
     // Get x and y
     int get_x(){ return x; }
     int get_y(){ return y; }
+
+    // King me
+    void king_me(){ king = true; }
+
+    // King
+    bool king;
   protected:
 
   private:
     // Image
     BITMAP *image;
+    BITMAP *image_king;
 
     // Position
     int x;
@@ -49,7 +56,7 @@ class checker{
     int height;
 
     // Generate image
-    static BITMAP *generate_image( int width, int height, int color);
+    static BITMAP *generate_image( int width, int height, int color, bool king = false);
 };
 
 #endif // CHECKER_H
