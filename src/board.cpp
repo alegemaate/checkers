@@ -6,29 +6,29 @@ board::board(){
   this -> width = 1;
   this -> height = 1;
 
-  // Spacing of tiles
-  this -> tiles_wide = 1;
-  this -> tiles_high = 1;
+  // Selection
+  selection_x = 0;
+  selection_y = 0;
 
   // Null point image
   image_board = NULL;
 }
 
 // Init the board
-board::board( int tiles_wide, int tiles_high, int width, int height){
+board::board( int width, int height){
   // Size
   this -> width = width;
   this -> height = height;
 
-  // Spacing of tiles
-  this -> tiles_wide = tiles_wide;
-  this -> tiles_high = tiles_high;
+  // Selection
+  selection_x = 0;
+  selection_y = 0;
 
   // Null point image
   image_board = NULL;
 
   // Make the board
-  generate_board();
+  image_board = generate_board( this -> width, this -> height);
 }
 
 // Destroy the board
@@ -39,22 +39,65 @@ board::~board(){
 // Draw the board
 void board::draw( BITMAP *tempBuffer){
   // IF it exists
-  if( image_board != NULL){
+  if( image_board != NULL)
     draw_sprite( tempBuffer, image_board, 0, 0);
+
+  // Draw selection
+  rectfill( tempBuffer, selection_x * width/TILES_WIDE, selection_y * height/TILES_HIGH, (selection_x + 1) * width/TILES_WIDE - 1, (selection_y + 1) * height/TILES_HIGH - 1, 0xFFFF00);
+
+  // Draw pieces
+  for( unsigned int i = 0; i < checkers.size(); i++)
+    checkers.at(i).draw( tempBuffer);
+
+  // Debug
+  textprintf_ex( tempBuffer, font, 500, 20, 0xFFFFFF, -1, "Selection X/Y:%i %i", selection_x, selection_y);
+}
+
+// Add checkers
+void board::add_checker( checker newChecker){
+  checkers.push_back( newChecker);
+}
+
+// Checker at pos
+int board::checker_at( int x, int y){
+  for( unsigned int i = 0; i < checkers.size(); i++){
+    if( checkers.at(i).is_at( x, y)){
+      return i;
+      break;
+    }
+  }
+  return -1;
+}
+
+// Select tile
+void board::select_tile( int x, int y){
+  if( x < TILES_HIGH && y < TILES_WIDE ){
+    selection_x = x;
+    selection_y = y;
+
+    // Jump pieces
+    bool superJump = false;
+    int checker_index = checker_at( selection_x * (height/TILES_HIGH), selection_y * (width/TILES_WIDE));
+    int checker_index2 = checker_at( (selection_x - 1) * (height/TILES_HIGH), selection_y * (width/TILES_WIDE));
+    if( checker_index != -1)
+      checkers.at(checker_index).jump( true, superJump);
   }
 }
 
 // Generate board image
-void board::generate_board(){
-  image_board = create_bitmap( width, height);
-  clear_to_color( image_board, 0x000000);
+BITMAP *board::generate_board( int width, int height){
+  BITMAP *temp_image = create_bitmap( width, height);
+  clear_to_color( temp_image, 0x8C5242);
 
   // Populate squares
-  for( int i = 0; i < tiles_wide; i += 1){
-    for( int t = 0; t < tiles_high; t += 1){
+  for( int i = 0; i < TILES_WIDE; i += 1){
+    for( int t = 0; t < TILES_HIGH; t += 1){
       // If it should be drawn
       if( (i % 2 == 0 && t % 2 == 1) || (i % 2 == 1 && t % 2 == 0))
-        rectfill( image_board, i * width/tiles_wide, t * height/tiles_wide, (i + 1) * width/tiles_wide, (t + 1) * height/tiles_high, 0xFF0000);
+        rectfill( temp_image, i * width/TILES_WIDE, t * height/TILES_HIGH, (i + 1) * width/TILES_WIDE - 1, (t + 1) * height/TILES_HIGH - 1, 0xFFFFCE);
     }
   }
+
+  // Return the image
+  return temp_image;
 }

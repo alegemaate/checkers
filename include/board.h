@@ -10,18 +10,20 @@
 // Checkers type
 #include "checker.h"
 
+// Tiles wide and high
+#define TILES_WIDE 8
+#define TILES_HIGH 8
+
 // Holder of board, contains spaces for checkers
 class board{
   public:
     board();
-    board( int tiles_wide, int tiles_high, int width, int height);
+    board( int width, int height);
     virtual ~board();
 
     // Size
     int width;
     int height;
-    int tiles_wide;
-    int tiles_high;
 
     // Draw
     void draw( BITMAP *tempBuffer);
@@ -30,18 +32,25 @@ class board{
     void add_checker( checker newChecker);
 
     // Check if checker is at position
-    bool checker_at( int x, int y);
+    void select_tile( int x, int y);
   protected:
 
   private:
     // Board generator
-    void generate_board();
+    static BITMAP *generate_board( int width, int height);
+
+    // Checker at pos
+    int checker_at( int x, int y);
 
     // Image of board
     BITMAP *image_board;
 
     // Stores checkers
     std::vector<checker> checkers;
+
+    // Selected coordinates
+    int selection_x;
+    int selection_y;
 };
 
 #endif // BOARD_H

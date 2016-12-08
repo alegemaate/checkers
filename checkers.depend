@@ -1,15 +1,27 @@
 # depslib dependency file v1.0
-1481155298 source:c:\users\allan\documents\games indev\checkers\main.cpp
+1481160051 source:c:\users\allan\documents\games indev\checkers\main.cpp
 	<allegro.h>
-	"board.h"
+	"game.h"
 
-1481155476 c:\users\allan\documents\games indev\checkers\include\board.h
+1481161243 c:\users\allan\documents\games indev\checkers\include\board.h
 	<allegro.h>
 	<vector>
 	"checker.h"
 
-1481155290 source:c:\users\allan\documents\games indev\checkers\src\board.cpp
+1481160605 source:c:\users\allan\documents\games indev\checkers\src\board.cpp
 	"board.h"
 
-1481155456 c:\users\allan\documents\games indev\checkers\include\checker.h
+1481160976 c:\users\allan\documents\games indev\checkers\include\checker.h
+	<allegro.h>
+
+1481160719 source:c:\users\allan\documents\games indev\checkers\src\checker.cpp
+	"checker.h"
+
+1481159407 c:\users\allan\documents\games indev\checkers\include\game.h
+	<allegro.h>
+	"board.h"
+	"checker.h"
+
+1481160781 source:c:\users\allan\documents\games indev\checkers\src\game.cpp
+	"game.h"
 

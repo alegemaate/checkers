@@ -1,13 +1,11 @@
 // Includes
 #include <allegro.h>
 
-#include "board.h"
+// Game state
+#include "game.h"
 
-// Buffer
-BITMAP *buffer;
-
-// Main board
-board main_board;
+// Make a game
+game *checkers_game;
 
 // Init game
 void init(){
@@ -19,30 +17,10 @@ void init(){
 
   // Init graphics
   set_color_depth( 32);
-  set_gfx_mode( GFX_AUTODETECT_WINDOWED, 480, 480, 0, 0);
+  set_gfx_mode( GFX_AUTODETECT_WINDOWED, 640, 480, 0, 0);
 
-  // Create buffer
-  buffer = create_bitmap( SCREEN_W, SCREEN_H);
-
-  // Create a board
-  main_board = board( 10, 10, SCREEN_H, SCREEN_H);
-}
-
-// Run game
-void update(){
-
-}
-
-// Draw
-void draw(){
-  // Clear buffer
-  clear_to_color( buffer, 0x000000);
-
-  // Draw board
-  main_board.draw( buffer);
-
-  // Draw buffer to screen
-  draw_sprite( screen, buffer, 0, 0);
+  // Create game
+  checkers_game = new game;
 }
 
 // Main
@@ -52,8 +30,8 @@ int main(){
 
   // Run loops
   while( !key[KEY_ESC]){
-    update();
-    draw();
+    checkers_game -> update();
+    checkers_game -> draw();
   }
 
   // End
