@@ -11,14 +11,14 @@ game::game(){
   // Make some checkers
   for( int t = 0; t < 3; t += 1){
     for( int i = t % 2; i < TILES_WIDE; i += 2){
-      checker newChecker( i * SCREEN_H/TILES_WIDE, SCREEN_H/TILES_WIDE * t, SCREEN_H/TILES_HIGH, SCREEN_H/TILES_HIGH, COLOR_RED);
+      checker newChecker( i, t, SCREEN_H/TILES_HIGH, SCREEN_H/TILES_HIGH, COLOR_RED);
       main_board.add_checker( newChecker);
     }
   }
 
   for( int t = TILES_WIDE - 3; t < TILES_WIDE; t += 1){
     for( int i = t % 2; i < TILES_WIDE; i += 2){
-      checker newChecker( i * SCREEN_H/TILES_WIDE, SCREEN_H/TILES_WIDE * t, SCREEN_H/TILES_HIGH, SCREEN_H/TILES_HIGH, COLOR_BLACK);
+      checker newChecker( i, t, SCREEN_H/TILES_HIGH, SCREEN_H/TILES_HIGH, COLOR_BLACK);
       main_board.add_checker( newChecker);
     }
   }
@@ -36,7 +36,11 @@ game::~game(){
 void game::update(){
   // Select tile
   if( mouse_b & 1){
-    main_board.select_tile( mouse_x/(SCREEN_H/TILES_WIDE), mouse_y/(SCREEN_H/TILES_WIDE));
+    main_board.select_tile( position(mouse_x/(SCREEN_H/TILES_WIDE), mouse_y/(SCREEN_H/TILES_WIDE)));
+  }
+  if( mouse_b & 2){
+    checker newChecker( mouse_x/(SCREEN_H/TILES_WIDE), mouse_y/(SCREEN_H/TILES_WIDE), SCREEN_H/TILES_HIGH, SCREEN_H/TILES_HIGH, COLOR_BLACK);
+    main_board.add_checker( newChecker);
   }
 }
 

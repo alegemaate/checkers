@@ -30,6 +30,10 @@ class checker{
     // Type
     int type;
     int color;
+
+    // Get x and y
+    int get_x(){ return x; }
+    int get_y(){ return y; }
   protected:
 
   private:

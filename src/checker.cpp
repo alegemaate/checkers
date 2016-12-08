@@ -34,7 +34,7 @@ checker::~checker(){
 void checker::draw( BITMAP *tempBuffer){
   // IF it exists
   if( image != NULL)
-    draw_sprite( tempBuffer, image, x, y);
+    draw_sprite( tempBuffer, image, x * width, y * height);
 }
 
 // At position
