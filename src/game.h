@@ -3,6 +3,7 @@
 
 // Includes
 #include <SDL2/SDL.h>
+#include <stdbool.h>
 
 // Board
 #include "board.h"
@@ -10,23 +11,13 @@
 // Checkers
 #include "checker.h"
 
-// Global vars
-#include "globals.h"
+typedef struct {
+  Board main_board;
+  bool mouse_down;
+} Game;
 
-// Main game
-class game {
- public:
-  game();
-
-  // Update
-  void update();
-
-  // Drawing
-  void draw();
-
- private:
-  // Main board
-  board main_board;
-};
+void init_game(Game* game);
+void update_game(Game* game);
+void draw_game(Game* game);
 
 #endif  // GAME_H

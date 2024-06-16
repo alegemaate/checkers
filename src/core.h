@@ -5,4 +5,6 @@
 
 extern SDL_Renderer* renderer;
 
+extern int turn;
+
 #endif

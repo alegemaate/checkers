@@ -7,7 +7,25 @@
     "tuple": "cpp",
     "utility": "cpp",
     "cmath": "cpp",
-    "iostream": "cpp"
+    "iostream": "cpp",
+    "deque": "cpp",
+    "string": "cpp",
+    "vector": "cpp",
+    "string_view": "cpp",
+    "initializer_list": "cpp",
+    "*.tcc": "cpp",
+    "unordered_map": "cpp",
+    "system_error": "cpp",
+    "game.h": "c",
+    "checker.h": "c",
+    "position.h": "c",
+    "core.h": "c",
+    "board.h": "c",
+    "sdl.h": "c",
+    "sdl_main.h": "c",
+    "sdl_stdinc.h": "c",
+    "stdio.h": "c",
+    "sdl_audio.h": "c"
   },
   "sonarlint.pathToCompileCommands": "${workspaceFolder}/build/compile_commands.json"
 }

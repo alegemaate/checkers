@@ -7,11 +7,14 @@
       "label": "Build",
       "type": "shell",
       "detail": "Run and build checkers",
-      "command": "cmake --build . && cd build && ./Checkers",
+      "command": "cd build && cmake --build . && cd build && ./Checkers",
       "windows": {
-        "command": "cmake --build . && cd build && Checkers.exe"
+        "command": "cd build && cmake --build . && cd build && Checkers.exe"
       },
-      "group": "build",
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      },
       "problemMatcher": "$gcc"
     }
   ]

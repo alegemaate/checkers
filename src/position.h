@@ -2,12 +2,9 @@
 #define POSITION_H
 
 // Stores 2 dimensional coordinates
-class position {
- public:
-  position(int x = -1, int y = -1);
-
+typedef struct {
   int x;
   int y;
-};
+} Position;
 
 #endif

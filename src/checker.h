@@ -1,49 +1,15 @@
 #ifndef CHECKER_H
 #define CHECKER_H
 
-// SDL included for drawing
 #include <SDL2/SDL.h>
+#include <stdbool.h>
 
 // Const colors
-const int COLOR_RED = 1;
-const int COLOR_BLACK = 0;
+#define COLOR_RED 1
+#define COLOR_BLACK 0
 
-// Checker class
-class checker {
- public:
-  // Constructors
-  checker();
-  checker(int x, int y, int width, int height, int color);
-
-  // Draw
-  void draw();
-
-  // At position
-  bool is_at(int x, int y);
-
-  // Move
-  void jump(bool left, bool super, bool backwards);
-
-  // Type
-  int type;
-  int color;
-
-  // Get x and y
-  int get_x() { return x; }
-  int get_y() { return y; }
-
-  // King me
-  void king_me() { king = true; }
-
-  // King
-  bool king;
-
- protected:
- private:
-  // Image
-  SDL_Texture* image;
-  SDL_Texture* image_king;
-
+// Checker struct
+typedef struct {
   // Position
   int x;
   int y;
@@ -52,11 +18,31 @@ class checker {
   int width;
   int height;
 
-  // Generate image
-  static SDL_Texture* generate_image(int width,
-                                     int height,
-                                     int color,
-                                     bool king = false);
-};
+  // Type
+  int type;
+  int color;
+
+  // King
+  int king;
+
+  // Image
+  SDL_Texture* image;
+  SDL_Texture* image_king;
+} Checker;
+
+// Init
+void init_checker(Checker* checker);
+
+// Draw
+void draw_checker(Checker* checker);
+
+// At position
+bool is_checker_at(Checker* checker, int x, int y);
+
+// Move
+void jump_checker(Checker* checker, bool left, bool super, bool backwards);
+
+// Generate image
+SDL_Texture* generate_image(int width, int height, int color, bool king);
 
 #endif  // CHECKER_H
