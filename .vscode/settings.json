@@ -1,0 +1,13 @@
+{
+  "files.associations": {
+    "random": "cpp",
+    "array": "cpp",
+    "memory": "cpp",
+    "functional": "cpp",
+    "tuple": "cpp",
+    "utility": "cpp",
+    "cmath": "cpp",
+    "iostream": "cpp"
+  },
+  "sonarlint.pathToCompileCommands": "${workspaceFolder}/build/compile_commands.json"
+}
